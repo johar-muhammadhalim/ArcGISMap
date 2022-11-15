@@ -55,6 +55,15 @@
         const graphicsLayer = new GraphicsLayer();
         map.add(graphicsLayer);
 
+        const popupTemplate = {
+            title: "{Name}",
+            content: "{Description}"
+        }
+        const attributes = {
+            Name: "Graphic",
+            Description: "I am a polygon"
+        }
+
         const point = { //Create a point
             type: "point",
             longitude: 104.165,
@@ -72,7 +81,10 @@
 
         const pointGraphic = new Graphic({
             geometry: point,
-            symbol: simpleMarkerSymbol
+            symbol: simpleMarkerSymbol,
+            
+            attributes: attributes,
+            popupTemplate: popupTemplate
         });
         graphicsLayer.add(pointGraphic);
 
