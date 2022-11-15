@@ -21,8 +21,10 @@
           "esri/Map",
           "esri/views/SceneView",
           "esri/widgets/BasemapToggle",
+          "esri/Graphic",
+          "esri/layers/GraphicsLayer"
 
-        ], function(esriConfig, Map, SceneView, BasemapToggle) {
+        ], function(esriConfig, Map, SceneView, BasemapToggle, Graphic, GraphicsLayer) {
         
         esriConfig.apiKey = "AAPK43cf7b8e078c4d0caad2fc4b14d5692c-7wQM9_zq2wZfua0lDZeQ_SrysbyxAdwYiA_MinVbxz6OgKrHkv9skXaOArJUm4w";
         
@@ -50,6 +52,31 @@
         });
         view.ui.add(basemapToggle,"bottom-right");
 
+        const graphicsLayer = new GraphicsLayer();
+        map.add(graphicsLayer);
+
+        const point = { //Create a point
+            type: "point",
+            longitude: 104.165,
+            latitude: 1.337,
+        };
+        
+        const simpleMarkerSymbol = {
+            type: "simple-marker",
+            color: [226, 119, 40],  // Orange
+            outline: {
+                color: [255, 255, 255], // White
+                width: 1
+            }
+        };
+
+        const pointGraphic = new Graphic({
+            geometry: point,
+            symbol: simpleMarkerSymbol
+        });
+        graphicsLayer.add(pointGraphic);
+
+        
         });
     </script>
 </head>
