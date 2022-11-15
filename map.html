@@ -76,7 +76,28 @@
         });
         graphicsLayer.add(pointGraphic);
 
-        
+            // Create a line geometry
+        const polyline = {
+            type: "polyline",
+            paths: [
+                [104.165, 1.337], //Longitude, latitude
+                [104.165, 1.237], //Longitude, latitude
+                [104.365, 1.237], //Longitude, latitude
+
+            ]
+        };
+        const simpleLineSymbol = {
+            type: "simple-line",
+            color: [226, 119, 40], // Orange
+            width: 2
+        };
+
+        const polylineGraphic = new Graphic({
+        geometry: polyline,
+        symbol: simpleLineSymbol
+    });
+    graphicsLayer.add(polylineGraphic);
+            
         });
     </script>
 </head>
