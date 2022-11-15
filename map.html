@@ -19,8 +19,10 @@
         require([
           "esri/config",
           "esri/Map",
-          "esri/views/SceneView"
-        ], function(esriConfig, Map, SceneView) {
+          "esri/views/SceneView",
+          "esri/widgets/BasemapToggle",
+
+        ], function(esriConfig, Map, SceneView, BasemapToggle) {
         
         esriConfig.apiKey = "AAPK43cf7b8e078c4d0caad2fc4b14d5692c-7wQM9_zq2wZfua0lDZeQ_SrysbyxAdwYiA_MinVbxz6OgKrHkv9skXaOArJUm4w";
         
@@ -41,6 +43,12 @@
                 tilt: 50
             }
         });
+
+        const basemapToggle = new BasemapToggle({
+            view: view,
+            nextBasemap: "arcgis-imagery"
+        });
+        view.ui.add(basemapToggle,"bottom-right");
 
         });
     </script>
