@@ -1,47 +1,78 @@
- 
 <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-      <title>ArcGIS API for JavaScript Tutorials: Display a web scene</title>
-      <style>
-        html, body, #viewDiv {
-          padding: 0;
-          margin: 0;
-          height: 100%;
-          width: 100%;
-        }
-      </style>
-      <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
-      <script src="https://js.arcgis.com/4.25"></script>
-      <script>
-        require([
-    
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ArcGIS API for JavaScript Tutorials: Display your location</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.25/"></script>
+
+
+    <script>
+      require([
           "esri/config",
-    
           "esri/WebScene",
           "esri/views/SceneView",
-          "esri/widgets/Legend"
-    
-        ], function(esriConfig, WebScene, SceneView, Legend) {
-    
-         esriConfig.apiKey = "AAPK43cf7b8e078c4d0caad2fc4b14d5692c-7wQM9_zq2wZfua0lDZeQ_SrysbyxAdwYiA_MinVbxz6OgKrHkv9skXaOArJUm4w";
-    
-          const webscene = new WebScene({
+          //"esri/views/MapView",
+          "esri/widgets/Locate",
+
+          "esri/widgets/Track",
+          "esri/Graphic"
+
+        ], function(
+            esriConfig,
+            WebScene,
+            SceneView,
+            MapView,
+            Locate,
+
+            Track,
+            Graphic
+
+        ) {
+
+        const webScene = new WebScene({                    // Define the web scene reference
             portalItem: {
-              id: "579f97b2f3b94d4a8e48a5f140a6639b"
+                id: "579f97b2f3b94d4a8e48a5f140a6639b",
+                portal: "https://www.arcgis.com"               // Default: The ArcGIS Online Portal
             }
-          });
-    
-          const view = new SceneView({
-            container: "viewDiv",
-            map: webscene
-          });
-    
         });
-      </script>
-    </head>
-    <body>
-      <div id="viewDiv"></div>
-    </body>
-    </html>
+
+        const sceneView = new SceneView({                       // Load the web scene
+            map: myMap,
+            container: "sceneViewDiv"
+        });
+
+        var view = new SceneView({
+            camera: {
+                position: [
+                -122, // lon
+                38, // lat
+                50000  // elevation in meters
+                ],
+                heading: 95, // direction the camera is looking
+                tilt: 65 // tilt of the camera relative to the ground
+            }
+        });
+
+        
+
+      });
+    </script>
+
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
